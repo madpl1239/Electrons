@@ -5,10 +5,15 @@
  */
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "defines.hpp"
+#include "gauge.hpp"
+
+// gauge - position (60, 60), promień 40px
+CRotatingGauge gauge(60.0f, 60.0f, 30.0f);
 
 
-void Initialize()
+void Initialize(void)
 {
 	float ambientLight[] = {1.0f, 1.0f, 1.0f, 1.0f};
 	
@@ -48,21 +53,8 @@ void Reshape(int w, int h)
 }
 
 
-void Render()
+void drawScene(void)
 {
-	// angle of rotation around the nucleus
-	static float fElect1 = 0.0f;
-	
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	
-	// transforming scene into observer layout
-	glTranslatef(0.0f, 0.0f, -cameraDistance);
-	glRotatef(cameraAngleX, 1.0f, 0.0f, 0.0f);
-	glRotatef(cameraAngleY, 0.0f, 1.0f, 0.0f);
-	
 	// red core and its drawing
 	glRGB(185, 0, 0);
 	gluSphere(g_normalObject, 10.0f, 8, 5);
@@ -101,6 +93,27 @@ void Render()
 	fElect1 += speed;
 	if(fElect1 > 360.0f)
 		fElect1 = 0.0f;
+}
+
+
+void Render(sf::RenderWindow& window)
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
+	// transforming scene into observer layout
+	glTranslatef(0.0f, 0.0f, -cameraDistance);
+	glRotatef(cameraAngleX, 1.0f, 0.0f, 0.0f);
+	glRotatef(cameraAngleY, 0.0f, 1.0f, 0.0f);
+	
+	drawScene();
+	
+	// drawing speed gauge
+	window.pushGLStates();
+	gauge.draw(window, speed, 5.0f);
+	window.popGLStates();
 	
 	glFlush();
 }

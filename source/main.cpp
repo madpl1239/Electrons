@@ -61,7 +61,7 @@ int main(void)
 		}
 		
 		keyboard.handleKbd();
-		Render();
+		Render(window);
 		window.display();
 	}
 	

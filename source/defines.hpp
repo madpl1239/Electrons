@@ -16,6 +16,9 @@ GLUquadricObj *g_normalObject = nullptr;
 // variable electron speed
 float speed = 1.0f;
 
+// angle of rotation around the nucleus
+static float fElect1 = 0.0f;
+
 // for support camera
 float cameraAngleX = 0.0f;
 float cameraAngleY = 0.0f;
