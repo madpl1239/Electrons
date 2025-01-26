@@ -142,7 +142,7 @@ int main(void)
 			if(event.type == sf::Event::Closed)
            		quit = true;
 			
-			else if((event.type == sf::Event::KeyPressed)
+			else if(event.type == sf::Event::KeyPressed)
 				if(event.key.code == sf::Keyboard::Escape or event.key.code == sf::Keyboard::Q)
 					quit = true;
 				
