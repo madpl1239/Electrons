@@ -27,3 +27,5 @@ float cameraDistance = 250.0f;
 // initial gauge position
 const int GAUGEPOSX = 60;
 const int GAUGEPOSY = 540;
+
+bool quit = false;

@@ -20,8 +20,6 @@
 
 int main(void)
 {
-	bool quit = false;
-
 	sf::ContextSettings contextSettings;
 	contextSettings.depthBits = 24;
 	contextSettings.sRgbCapable = false;
@@ -35,16 +33,18 @@ int main(void)
 	g_normalObject = (GLUquadricObj*)gluNewQuadric();
 	
 	// register keys and functions
-	keyboard.bindKbd(sf::Keyboard::Add, increaseSpeed);
-	keyboard.bindKbd(sf::Keyboard::Equal, increaseSpeed);
-	keyboard.bindKbd(sf::Keyboard::Subtract, decreaseSpeed);
-	keyboard.bindKbd(sf::Keyboard::Dash, decreaseSpeed);
-	keyboard.bindKbd(sf::Keyboard::Up, moveCameraUp);
-	keyboard.bindKbd(sf::Keyboard::Down, moveCameraDown);
-	keyboard.bindKbd(sf::Keyboard::Left, moveCameraLeft);
-	keyboard.bindKbd(sf::Keyboard::Right, moveCameraRight);
-	keyboard.bindKbd(sf::Keyboard::W, zoomIn);
-	keyboard.bindKbd(sf::Keyboard::S, zoomOut);
+	keyboard.bindKbd(sf::Keyboard::Add, increaseSpeedFunc);
+	keyboard.bindKbd(sf::Keyboard::Equal, increaseSpeedFunc);
+	keyboard.bindKbd(sf::Keyboard::Subtract, decreaseSpeedFunc);
+	keyboard.bindKbd(sf::Keyboard::Dash, decreaseSpeedFunc);
+	keyboard.bindKbd(sf::Keyboard::Up, moveCamUpFunc);
+	keyboard.bindKbd(sf::Keyboard::Down, moveCamDownFunc);
+	keyboard.bindKbd(sf::Keyboard::Left, moveCamLeftFunc);
+	keyboard.bindKbd(sf::Keyboard::Right, moveCamRightFunc);
+	keyboard.bindKbd(sf::Keyboard::W, zoomInFunc);
+	keyboard.bindKbd(sf::Keyboard::S, zoomOutFunc);
+	keyboard.bindKbd(sf::Keyboard::Escape, closeFunc);
+	keyboard.bindKbd(sf::Keyboard::Q, closeFunc);
 
 	while(window.isOpen() and not quit)
 	{

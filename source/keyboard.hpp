@@ -8,13 +8,13 @@
 #include "defines.hpp"
 
 
-void increaseSpeed()
+void increaseSpeedFunc()
 {
 	speed += 0.1f;
 }
 
 
-void decreaseSpeed()
+void decreaseSpeedFunc()
 {
 	if(speed > 0.0f)
 		speed -= 0.1f;
@@ -24,37 +24,43 @@ void decreaseSpeed()
 }
 
 
-void moveCameraUp()
+void moveCamUpFunc()
 {
 	cameraAngleX -= 5.0f;
 }
 
 
-void moveCameraDown()
+void moveCamDownFunc()
 {
 	cameraAngleX += 5.0f;
 }
 
 
-void moveCameraLeft()
+void moveCamLeftFunc()
 {
 	cameraAngleY -= 5.0f;
 }
 
 
-void moveCameraRight()
+void moveCamRightFunc()
 {
 	cameraAngleY += 5.0f;
 }
 
 
-void zoomIn()
+void zoomInFunc()
 {
 	cameraDistance -= 10.0f;
 }
 
 
-void zoomOut()
+void zoomOutFunc()
 {
 	cameraDistance += 10.0f;
+}
+
+
+void closeFunc()
+{
+	quit = true;
 }
