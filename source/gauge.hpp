@@ -18,18 +18,18 @@ public:
 		m_position(x, y),
 		m_radius(radius)
 	{
-		// initialize the gauge (circle and needle)
+		// initialize circle of gauge
 		m_circle.setRadius(m_radius);
 		m_circle.setOutlineColor(sf::Color::White);
 		m_circle.setOutlineThickness(3.0f);
 		m_circle.setFillColor(sf::Color::Transparent);
 		m_circle.setPosition(m_position.x - m_radius, m_position.y - m_radius);
 		
-		// clue length and thickness
+		// clue length and thickness of gauge
 		m_clue.setSize(sf::Vector2f(m_radius, 2.0f));
 		m_clue.setOrigin(m_radius * 0.1, 1.0f); // rotate from one end
-		m_clue.setPosition(m_position);
 		m_clue.setFillColor(sf::Color::Red);
+		m_clue.setPosition(m_position);
 	}
 	
 	void draw(sf::RenderWindow& window, float value, float maxValue)
