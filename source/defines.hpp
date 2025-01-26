@@ -28,4 +28,8 @@ float cameraDistance = 250.0f;
 const int GAUGEPOSX = 60;
 const int GAUGEPOSY = 540;
 
+// colors of gauge
+const sf::Color GAUGECIRCLE(0x00, 0xff, 0xff, 0xff); // cyjan
+const sf::Color GAUGECLUE(0xe3, 0x42, 0x34, 0xff); // cinober
+
 bool quit = false;
