@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <GL/glu.h>
+#include <iostream>
 
 #define glRGB(r, g, b) glColor3f((GLfloat)r / 255.0f, (GLfloat)g / 255.0f, (GLfloat)b / 255.0f)
 
@@ -20,6 +21,10 @@ const int HEIGHT = 600;
 
 float speed = 1.0f; // variable electron speed
 GLUquadricObj *g_normalObject = nullptr;
+
+float cameraAngleX = 0.0f;
+float cameraAngleY = 0.0f;
+float cameraDistance = 250.0f;
 
 
 void Initialize()
@@ -68,12 +73,14 @@ void Render()
 	static float fElect1 = 0.0f;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	// transforming scene into observer layout
-	glTranslatef(0.0f, 0.0f, -250.0f);
+	glTranslatef(0.0f, 0.0f, -cameraDistance);
+	glRotatef(cameraAngleX, 1.0f, 0.0f, 0.0f);
+	glRotatef(cameraAngleY, 0.0f, 1.0f, 0.0f);
 
 	// red core and its drawing
 	glRGB(185, 0, 0);
@@ -127,7 +134,7 @@ int main(void)
 	contextSettings.sRgbCapable = false;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
-	window.setVerticalSyncEnabled(false);
+	window.setVerticalSyncEnabled(true);
 
 	Reshape(WIDTH, HEIGHT);
 	Initialize();
@@ -150,14 +157,36 @@ int main(void)
 			{
 				// electron acceleration
 				if(event.key.code == sf::Keyboard::Add or event.key.code == sf::Keyboard::Equal)
-					speed += 0.5f;
+					speed += 0.1f;
 				
+				// Sterowanie kamerą
+				else if(event.key.code == sf::Keyboard::Up)
+					cameraAngleX -= 5.0f; // Obrót w górę
+				
+				else if(event.key.code == sf::Keyboard::Down)
+					cameraAngleX += 5.0f; // Obrót w dół
+				
+				else if(event.key.code == sf::Keyboard::Left)
+					cameraAngleY -= 5.0f; // Obrót w lewo
+				
+				else if(event.key.code == sf::Keyboard::Right)
+					cameraAngleY += 5.0f; // Obrót w prawo
+				
+				else if(event.key.code == sf::Keyboard::W)
+					cameraDistance -= 10.0f; // Przybliżenie
+				
+				else if(event.key.code == sf::Keyboard::S)
+					cameraDistance += 10.0f; // Oddalenie
+					
 				// reducing the speed of electrons
-				else if((event.key.code == sf::Keyboard::Subtract or event.key.code == sf::Keyboard::Dash) and speed > 0.5f)
-					speed -= 0.5f;
+				if((event.key.code == sf::Keyboard::Subtract or event.key.code == sf::Keyboard::Dash) and speed > 0.0f)
+					speed -= 0.1f;
+
+				if(speed < 0.0f)
+					speed = 0.0f;
 			}
 			
-			else if(event.type == sf::Event::Resized)
+			if(event.type == sf::Event::Resized)
 				Reshape(event.size.width, event.size.height);
 		}
 		
