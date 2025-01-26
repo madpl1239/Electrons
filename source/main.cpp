@@ -1,12 +1,10 @@
 /*
  * main.cpp
  *
- * Electron - pokazuje ruch elektronów wokoło
- * jądra atomu. Kod wykorzystuje SFML, OpenGL
- * i Glu. Korzysta z kwadryk.
+ * Electron - shows the movement of electrons around the nucleus
+ * of an atom. The code uses SFML, OpenGL and Glu. It uses quadrics.
  *
- * LANA Systems 1997.
- * 04-03-2019 ver: 0.1
+ * 04-03-2019 v0.1 by madpl (Bogdan Kułaga)
  */
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
