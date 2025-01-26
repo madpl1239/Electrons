@@ -23,3 +23,7 @@ static float fElect1 = 0.0f;
 float cameraAngleX = 0.0f;
 float cameraAngleY = 0.0f;
 float cameraDistance = 250.0f;
+
+// initial gauge position
+const int GAUGEPOSX = 60;
+const int GAUGEPOSY = 540;

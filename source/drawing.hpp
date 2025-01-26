@@ -9,8 +9,8 @@
 #include "defines.hpp"
 #include "gauge.hpp"
 
-// gauge - position (60, 60), promień 40px
-CRotatingGauge gauge(60.0f, 60.0f, 30.0f);
+// gauge - position (60, 60), radius 30px
+CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f);
 
 
 void Initialize(void)
