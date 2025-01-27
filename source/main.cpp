@@ -23,7 +23,7 @@ int main(void)
 	contextSettings.sRgbCapable = false;
 
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
-	window.setPosition(sf::Vector2i(200, 100));
+	window.setPosition(sf::Vector2i(250, 150));
 	window.setVerticalSyncEnabled(true);
 
 	Reshape(WIDTH, HEIGHT);
