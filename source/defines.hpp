@@ -26,7 +26,7 @@ float cameraDistance = 250.0f;
 
 // initial gauge position
 const int GAUGEPOSX = 60;
-const int GAUGEPOSY = 540;
+const int GAUGEPOSY = 520;
 
 // colors of gauge
 const sf::Color GAUGECIRCLE(0x00, 0xff, 0xff, 0xff); // cyjan

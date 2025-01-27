@@ -10,6 +10,7 @@
 #include <SFML/OpenGL.hpp>
 #include <GL/glu.h>
 #include <iostream>
+#include <stdexcept>
 #include "input.hpp"
 #include "defines.hpp"
 #include "keyboard.hpp"
@@ -18,53 +19,70 @@
 
 int main(void)
 {
-	sf::ContextSettings contextSettings;
-	contextSettings.depthBits = 24;
-	contextSettings.sRgbCapable = false;
-
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
-	window.setPosition(sf::Vector2i(250, 150));
-	window.setVerticalSyncEnabled(true);
-
-	Reshape(WIDTH, HEIGHT);
-	Initialize();
-
-	g_normalObject = (GLUquadricObj*)gluNewQuadric();
-	
-	// register keys and functions
-	keyboard.bindKbd(sf::Keyboard::Add, increaseSpeedFunc);
-	keyboard.bindKbd(sf::Keyboard::Equal, increaseSpeedFunc);
-	keyboard.bindKbd(sf::Keyboard::Subtract, decreaseSpeedFunc);
-	keyboard.bindKbd(sf::Keyboard::Dash, decreaseSpeedFunc);
-	keyboard.bindKbd(sf::Keyboard::Up, moveCamUpFunc);
-	keyboard.bindKbd(sf::Keyboard::Down, moveCamDownFunc);
-	keyboard.bindKbd(sf::Keyboard::Left, moveCamLeftFunc);
-	keyboard.bindKbd(sf::Keyboard::Right, moveCamRightFunc);
-	keyboard.bindKbd(sf::Keyboard::W, zoomInFunc);
-	keyboard.bindKbd(sf::Keyboard::S, zoomOutFunc);
-	keyboard.bindKbd(sf::Keyboard::Escape, closeFunc);
-	keyboard.bindKbd(sf::Keyboard::Q, closeFunc);
-
-	while(window.isOpen() and not quit)
+	try
 	{
-		sf::Event event;
-		while(window.pollEvent(event))
+		sf::Font font;
+		
+		if(not font.loadFromFile("./menu_font.ttf"))
+			throw std::runtime_error("font not loaded!\n");
+		
+		sf::ContextSettings contextSettings;
+		contextSettings.depthBits = 24;
+		contextSettings.sRgbCapable = false;
+		
+		CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f, font);
+		
+		sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
+		window.setPosition(sf::Vector2i(250, 150));
+		window.setVerticalSyncEnabled(true);
+		
+		Reshape(WIDTH, HEIGHT);
+		Initialize();
+		
+		g_normalObject = (GLUquadricObj*)gluNewQuadric();
+		
+		// register keys and functions
+		keyboard.bindKbd(sf::Keyboard::Add, increaseSpeedFunc);
+		keyboard.bindKbd(sf::Keyboard::Equal, increaseSpeedFunc);
+		keyboard.bindKbd(sf::Keyboard::Subtract, decreaseSpeedFunc);
+		keyboard.bindKbd(sf::Keyboard::Dash, decreaseSpeedFunc);
+		keyboard.bindKbd(sf::Keyboard::Up, moveCamUpFunc);
+		keyboard.bindKbd(sf::Keyboard::Down, moveCamDownFunc);
+		keyboard.bindKbd(sf::Keyboard::Left, moveCamLeftFunc);
+		keyboard.bindKbd(sf::Keyboard::Right, moveCamRightFunc);
+		keyboard.bindKbd(sf::Keyboard::W, zoomInFunc);
+		keyboard.bindKbd(sf::Keyboard::S, zoomOutFunc);
+		keyboard.bindKbd(sf::Keyboard::Escape, closeFunc);
+		keyboard.bindKbd(sf::Keyboard::Q, closeFunc);
+		
+		while(window.isOpen() and not quit)
 		{
-			if(event.type == sf::Event::Closed)
-           		quit = true;
+			sf::Event event;
+			while(window.pollEvent(event))
+			{
+				if(event.type == sf::Event::Closed)
+					quit = true;
+				
+				if(event.type == sf::Event::Resized)
+					Reshape(event.size.width, event.size.height);
+				
+				keyboard.monitorKbd(event);
+			}
 			
-			if(event.type == sf::Event::Resized)
-				Reshape(event.size.width, event.size.height);
-			
-			keyboard.monitorKbd(event);
+			keyboard.handleKbd();
+			Render(window, gauge);
+			window.display();
 		}
 		
-		keyboard.handleKbd();
-		Render(window);
-		window.display();
+		window.close();
 	}
-	
-	window.close();
-	
+
+	catch(const std::exception &e)
+	{
+		std::cerr << "error: " << e.what() << std::endl;
+		
+		return -1;
+	}
+
 	return 0;
 }

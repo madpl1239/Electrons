@@ -9,9 +9,6 @@
 #include "defines.hpp"
 #include "gauge.hpp"
 
-// gauge - position (60, 60), radius 30px
-CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f);
-
 
 void Initialize(void)
 {
@@ -96,7 +93,7 @@ void drawScene(void)
 }
 
 
-void Render(sf::RenderWindow& window)
+void Render(sf::RenderWindow& window, CRotatingGauge& gauge)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
