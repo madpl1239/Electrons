@@ -32,7 +32,7 @@ int main(void)
 		contextSettings.sRgbCapable = false;
 		
 		CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f, font);
-		CCoordinateSystem coord(40.0f);
+		CCoordinateSystem coord(2.0f);
 		
 		sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
 		window.setPosition(sf::Vector2i(250, 150));

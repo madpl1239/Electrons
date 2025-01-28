@@ -31,33 +31,50 @@ public:
 	{
 		glPushMatrix();
 		 
-		// Umieszczenie układu w prawym dolnym rogu i pomniejszenie
-		glTranslatef(WIDTH - 100.0f, -(HEIGHT - 100.0f), -cameraDistance);
-		glScalef(0.1f, 0.1f, 0.1f); // Zmniejszenie układu współrzędnych
-		glRotatef(m_angleX, 1.0f, 0.0f, 0.0f); // Obrót zgodnie z kamerą (X)
-		glRotatef(m_angleY, 0.0f, 1.0f, 0.0f); // Obrót zgodnie z kamerą (Y)
+		// Ustawienie układu współrzędnych w prawym dolnym rogu
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		gluPerspective(45.0f, static_cast<float>(WIDTH) / HEIGHT, 1.0f, 600.0f);
+		 
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		 
+		// Przesunięcie układu współrzędnych w prawy dolny róg ekranu
+		glTranslatef(3.5f, -3.0f, -10.0f); // Ustawienie w polu widzenia
+		glScalef(0.5f, 0.5f, 0.5f);        // Zmniejszenie układu współrzędnych
+		 
+		// Obrót układu współrzędnych zgodnie z kamerą
+		glRotatef(m_angleX, 1.0f, 0.0f, 0.0f);
+		glRotatef(m_angleY, 0.0f, 1.0f, 0.0f);
 		 
 		// Rysowanie osi X (czerwona)
 		glBegin(GL_LINES);
-		glColor3f(1.0f, 0.0f, 0.0f); // reed
+		glColor3f(1.0f, 0.0f, 0.0f); // Czerwony
 		glVertex3f(0.0f, 0.0f, 0.0f);
 		glVertex3f(m_size, 0.0f, 0.0f);
 		glEnd();
 		 
 		// Rysowanie osi Y (zielona)
 		glBegin(GL_LINES);
-		glColor3f(0.0f, 1.0f, 0.0f); // green
+		glColor3f(0.0f, 1.0f, 0.0f); // Zielony
 		glVertex3f(0.0f, 0.0f, 0.0f);
 		glVertex3f(0.0f, m_size, 0.0f);
 		glEnd();
 		 
 		// Rysowanie osi Z (niebieska)
 		glBegin(GL_LINES);
-		glColor3f(0.0f, 0.0f, 1.0f); // blue
+		glColor3f(0.0f, 0.0f, 1.0f); // Niebieski
 		glVertex3f(0.0f, 0.0f, 0.0f);
 		glVertex3f(0.0f, 0.0f, m_size);
 		glEnd();
 		 
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		 
+		glMatrixMode(GL_MODELVIEW);
 		glPopMatrix();
 	}
  
