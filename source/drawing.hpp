@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "defines.hpp"
 #include "gauge.hpp"
+#include "coordSystem.hpp"
 
 
 void Initialize(void)
@@ -93,7 +94,7 @@ void drawScene(void)
 }
 
 
-void Render(sf::RenderWindow& window, CRotatingGauge& gauge)
+void Render(sf::RenderWindow& window, CRotatingGauge& gauge, CCoordinateSystem& coords)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -106,6 +107,9 @@ void Render(sf::RenderWindow& window, CRotatingGauge& gauge)
 	glRotatef(cameraAngleY, 0.0f, 1.0f, 0.0f);
 	
 	drawScene();
+	
+	coords.update(cameraAngleX, cameraAngleY);
+	coords.draw();
 	
 	// drawing speed gauge
 	window.pushGLStates();

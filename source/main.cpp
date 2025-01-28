@@ -15,6 +15,7 @@
 #include "defines.hpp"
 #include "keyboard.hpp"
 #include "drawing.hpp"
+#include "coordSystem.hpp"
 
 
 int main(void)
@@ -31,6 +32,7 @@ int main(void)
 		contextSettings.sRgbCapable = false;
 		
 		CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f, font);
+		CCoordinateSystem coord(40.0f);
 		
 		sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
 		window.setPosition(sf::Vector2i(250, 150));
@@ -70,7 +72,7 @@ int main(void)
 			}
 			
 			keyboard.handleKbd();
-			Render(window, gauge);
+			Render(window, gauge, coord);
 			window.display();
 		}
 		
