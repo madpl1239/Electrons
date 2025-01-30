@@ -34,7 +34,7 @@ int main(void)
 		CRotatingGauge gauge(GAUGEPOSX, GAUGEPOSY, 30.0f, font);
 		
 		// Pozycja (x, y), rozmiar boksa (width, height), długość osi
-		CCoordinateSystem coord(650, 30, 100, 100, 30.0f);
+		CCoordinateSystem coord(3.0f);
 		
 		sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Electron 0.1 by madpl", sf::Style::Default, contextSettings);
 		window.setPosition(sf::Vector2i(250, 150));

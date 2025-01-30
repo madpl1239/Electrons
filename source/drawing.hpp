@@ -25,7 +25,11 @@ void Initialize(void)
 	glEnable(GL_COLOR_MATERIAL);
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 	
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	// 00 00 8B - DarkBlue Color
+	// 48 3D 8B - DarkSlateBlue Color
+	// D8 BF D8 - Thistle Color
+	// 88 BF 88 - ThistleLow Color
+	glClearColor(CORNFLOWERBLUECOL, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 }
 
@@ -44,7 +48,7 @@ void Reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	gluPerspective(45.0f, fAspect, 1.0f, 600.0f);
+	gluPerspective(FOV, fAspect, 1.0f, 600.0f);
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

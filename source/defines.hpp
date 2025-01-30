@@ -6,10 +6,26 @@
 #pragma once
 
 #define glRGB(r, g, b) glColor3f((GLfloat)r / 255.0f, (GLfloat)g / 255.0f, (GLfloat)b / 255.0f)
+#define glRGB2(r, g, b) (GLfloat)r / 255.0f, (GLfloat)g / 255.0f, (GLfloat)b / 255.0f
+
+// colors for axes
+#define REDCOL glRGB(0xFF, 0x00, 0x00)
+#define BLUECOL glRGB(0x00, 0x00, 0xFF)
+#define GREENCOL glRGB(0x00, 0x80, 0x00)
+#define LIMEGREENCOL glRGB(0x32, 0xCD, 0x32)
+#define PALEGREENCOL glRGB(0x98, 0xFB, 0x98)
+#define SEAGREENCOL glRGB(0x2E, 0x8B, 0x57)
+#define FORESTGREENCOL glRGB(0x22, 0x8B, 0x22)
+#define ORCHIDCOL glRGB2(0xDA, 0x70, 0xD6)
+#define PLUMCOL glRGB2(0xDD, 0xA0, 0xDD)
+#define MEDIUMPURPLECOL glRGB2(0x93, 0x70, 0xDB)
+#define CORNFLOWERBLUECOL glRGB2(0x64, 0x95, 0xED)
+
 
 // window size
 const int WIDTH = 800;
 const int HEIGHT = 600;
+const float FOV = 55.0f;
 
 GLUquadricObj *g_normalObject = nullptr;
 
