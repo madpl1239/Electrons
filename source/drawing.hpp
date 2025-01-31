@@ -109,10 +109,11 @@ void Render(sf::RenderWindow& window, CRotatingGauge& gauge, CCoordinateSystem& 
 	glTranslatef(0.0f, 0.0f, -cameraDistance);
 	glRotatef(cameraAngleX, 1.0f, 0.0f, 0.0f);
 	glRotatef(cameraAngleY, 0.0f, 1.0f, 0.0f);
+	glRotatef(cameraAngleZ, 0.0f, 0.0f, 1.0f);
 	
 	drawScene();
 	
-	coords.update(cameraAngleX, cameraAngleY);
+	coords.update(cameraAngleX, cameraAngleY, cameraAngleZ);
 	coords.draw();
 	
 	// drawing speed gauge

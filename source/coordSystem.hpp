@@ -20,10 +20,11 @@ public:
 		m_size(size)
 	{}
 
-	void update(float angleX, float angleY)
+	void update(float angleX, float angleY, float angleZ)
 	{
 		m_angleX = angleX;
 		m_angleY = angleY;
+		m_angleZ = angleZ;
 	}
 
 	void draw()
@@ -36,18 +37,19 @@ public:
 		glTranslatef(0.0f, 0.0f, -20.0f);
 		glRotatef(m_angleX, 1.0f, 0.0f, 0.0f);
 		glRotatef(m_angleY, 0.0f, 1.0f, 0.0f);
+		glRotatef(m_angleZ, 0.0f, 0.0f, 1.0f);
 		
 		// drawing axes
 		glBegin(GL_LINES);
-		REDCOL; 
+		glColor4f(REDCOL, 1.0f); 
 		glVertex3f(0, 0, 0);
 		glVertex3f(m_size, 0, 0);
 		
-		FORESTGREENCOL;
+		glColor4f(GREENCOL, 1.0f);
 		glVertex3f(0, 0, 0);
 		glVertex3f(0, m_size, 0);
 		
-		BLUECOL;
+		glColor4f(BLUECOL, 1.0f);
 		glVertex3f(0, 0, 0);
 		glVertex3f(0, 0, m_size);
 		glEnd();
@@ -59,4 +61,5 @@ private:
 	float m_size;
 	float m_angleX = 0.0f;
 	float m_angleY = 0.0f;
+	float m_angleZ = 0.0f;
 };

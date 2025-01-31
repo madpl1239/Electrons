@@ -24,27 +24,39 @@ void decreaseSpeedFunc()
 }
 
 
-void moveCamUpFunc()
+void moveCamXUFunc()
 {
 	cameraAngleX -= 5.0f;
 }
 
 
-void moveCamDownFunc()
+void moveCamXDFunc()
 {
 	cameraAngleX += 5.0f;
 }
 
 
-void moveCamLeftFunc()
+void moveCamYUFunc()
 {
 	cameraAngleY -= 5.0f;
 }
 
 
-void moveCamRightFunc()
+void moveCamYDFunc()
 {
 	cameraAngleY += 5.0f;
+}
+
+
+void moveCamZUFunc()
+{
+	cameraAngleZ -= 5.0f;
+}
+
+
+void moveCamZDFunc()
+{
+	cameraAngleZ += 5.0f;
 }
 
 

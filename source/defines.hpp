@@ -9,13 +9,13 @@
 #define glRGB2(r, g, b) (GLfloat)r / 255.0f, (GLfloat)g / 255.0f, (GLfloat)b / 255.0f
 
 // colors for axes
-#define REDCOL glRGB(0xFF, 0x00, 0x00)
-#define BLUECOL glRGB(0x00, 0x00, 0xFF)
-#define GREENCOL glRGB(0x00, 0x80, 0x00)
-#define LIMEGREENCOL glRGB(0x32, 0xCD, 0x32)
-#define PALEGREENCOL glRGB(0x98, 0xFB, 0x98)
-#define SEAGREENCOL glRGB(0x2E, 0x8B, 0x57)
-#define FORESTGREENCOL glRGB(0x22, 0x8B, 0x22)
+#define REDCOL glRGB2(0xFF, 0x00, 0x00)
+#define BLUECOL glRGB2(0x00, 0x00, 0xFF)
+#define GREENCOL glRGB2(0x00, 0x80, 0x00)
+#define LIMEGREENCOL glRGB2(0x32, 0xCD, 0x32)
+#define PALEGREENCOL glRGB2(0x98, 0xFB, 0x98)
+#define SEAGREENCOL glRGB2(0x2E, 0x8B, 0x57)
+#define FORESTGREENCOL glRGB2(0x22, 0x8B, 0x22)
 #define ORCHIDCOL glRGB2(0xDA, 0x70, 0xD6)
 #define PLUMCOL glRGB2(0xDD, 0xA0, 0xDD)
 #define MEDIUMPURPLECOL glRGB2(0x93, 0x70, 0xDB)
@@ -38,6 +38,7 @@ static float fElect1 = 0.0f;
 // for support camera
 float cameraAngleX = 0.0f;
 float cameraAngleY = 0.0f;
+float cameraAngleZ = 0.0f;
 float cameraDistance = 250.0f;
 
 // initial gauge position

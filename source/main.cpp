@@ -50,10 +50,14 @@ int main(void)
 		keyboard.bindKbd(sf::Keyboard::Equal, increaseSpeedFunc);
 		keyboard.bindKbd(sf::Keyboard::Subtract, decreaseSpeedFunc);
 		keyboard.bindKbd(sf::Keyboard::Dash, decreaseSpeedFunc);
-		keyboard.bindKbd(sf::Keyboard::Up, moveCamUpFunc);
-		keyboard.bindKbd(sf::Keyboard::Down, moveCamDownFunc);
-		keyboard.bindKbd(sf::Keyboard::Left, moveCamLeftFunc);
-		keyboard.bindKbd(sf::Keyboard::Right, moveCamRightFunc);
+		
+		keyboard.bindKbd(sf::Keyboard::Up, moveCamXUFunc);
+		keyboard.bindKbd(sf::Keyboard::Down, moveCamXDFunc);
+		keyboard.bindKbd(sf::Keyboard::Left, moveCamYUFunc);
+		keyboard.bindKbd(sf::Keyboard::Right, moveCamYDFunc);
+		keyboard.bindKbd(sf::Keyboard::A, moveCamZUFunc);
+		keyboard.bindKbd(sf::Keyboard::Z, moveCamZDFunc);
+		
 		keyboard.bindKbd(sf::Keyboard::W, zoomInFunc);
 		keyboard.bindKbd(sf::Keyboard::S, zoomOutFunc);
 		keyboard.bindKbd(sf::Keyboard::Escape, closeFunc);
